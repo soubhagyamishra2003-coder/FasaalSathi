@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FasalSathi — Smart Farming, Better Future</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ==================== VIEW 1: LANDING PAGE (Video Hero Style) ==================== -->
+  <div id="view-landing" class="view-screen active">
+    <header class="landing-nav">
+      <div class="brand-logo">
+        <span class="leaf-badge">🌱</span>
+        <div>
+          <strong>FasalSathi</strong>
+          <small>Smart Farming, Better Future</small>
+        </div>
+      </div>
+      <nav class="landing-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#smart-tools">Smart Tools</a>
+        <button class="btn-ghost" onclick="FasalApp.showView('login')">Login</button>
+        <button class="btn-forest" onclick="FasalApp.showView('dashboard')">Get Started</button>
+      </nav>
+    </header>
+
+    <section class="hero-section">
+      <div class="hero-left">
+        <span class="pill-tag">● AI-POWERED CROP INTELLIGENCE</span>
+        <h1 class="serif-title">Your Farm.<br>Your Camera.<br>Smarter Decisions.</h1>
+        <p class="hero-sub">
+          FasalSathi uses computer vision, real-time agro-weather, live APMC mandi data, and trilingual voice AI to protect your yield and maximize profit.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-forest btn-lg" onclick="FasalApp.showView('dashboard')">Open Farm Dashboard →</button>
+          <button class="btn-sand btn-lg" onclick="FasalApp.enterTool('doctor')">🩺 Scan Crop Leaf</button>
+        </div>
+        <div class="trust-row">
+          <span class="avatars">👨‍🌾 👩‍🌾 🧑‍🌾</span>
+          <span>Trusted by farmers across Odisha & India</span>
+        </div>
+      </div>
+
+      <!-- Right Floating Location & Live Weather Card (Video Style) -->
+      <div class="hero-weather-card">
+        <div class="card-top-label">📍 YOUR FARM LOCATION</div>
+        <h2 id="heroDistrictTitle" class="serif-md">Bhubaneswar, Odisha</h2>
+
+        <div class="search-bar-group">
+          <input type="text" id="heroCityInput" placeholder="Enter district (e.g. Khordha, Cuttack)..." />
+          <button class="btn-forest" id="heroSearchBtn">Search</button>
+        </div>
+        <button class="btn-sand full-width" id="heroGpsBtn">🎯 Use My Location</button>
+
+        <div class="weather-split">
+          <div class="w-main">
+            <span class="w-icon">⛅</span>
+            <div>
+              <div class="w-temp" id="heroTemp">29°C</div>
+              <small id="heroCond">Partly Cloudy</small>
+            </div>
+          </div>
+          <div class="w-metrics">
+            <div>💧 Humidity <strong id="heroHum">78%</strong></div>
+            <div>🌧️ Rain <strong id="heroRain">0.1 mm</strong></div>
+            <div>💨 Wind <strong id="heroWind">9 km/h</strong></div>
+          </div>
+        </div>
+
+        <div class="health-indicators">
+          <div class="ind-row"><span>Water Stress</span><span class="status-pill low">Low</span></div>
+          <div class="ind-row"><span>Crop Health</span><span class="status-pill good">86% Healthy</span></div>
+          <div class="ind-row"><span>Cyclone / Disease Risk</span><span class="status-pill med" id="heroRisk">Normal</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Strip -->
+    <section id="how-it-works" class="steps-section">
+      <p class="section-kicker">HOW IT WORKS</p>
+      <h2 class="serif-lg">From field data to smarter decisions.</h2>
+      <div class="steps-grid">
+        <div class="step-card"><span>01</span><h4>Capture</h4><p>Take or upload a photo of your crop leaf or select your district.</p></div>
+        <div class="step-card"><span>02</span><h4>Analyze</h4><p>AI evaluates leaf pathology, weather alerts, and soil ROI metrics.</p></div>
+        <div class="step-card"><span>03</span><h4>Understand</h4><p>Compare live APMC mandi prices against Govt MSP in your language.</p></div>
+        <div class="step-card"><span>04</span><h4>Act</h4><p>Get exact organic/chemical dosages and voice guidance in EN/HI/OR.</p></div>
+      </div>
+    </section>
+
+    <!-- Smart Farming Tools Preview -->
+    <section id="smart-tools" class="tools-preview">
+      <p class="section-kicker">● SMART FARMING TOOLS</p>
+      <h2 class="serif-lg">Explore your farm with confidence.</h2>
+      <div class="preview-cards">
+        <div class="p-card tint-green" onclick="FasalApp.enterTool('roi')">
+          <div class="p-icon">💰</div>
+          <h3>Crop & ROI Advisor</h3>
+          <p>Calculate yield, cultivation cost & net profit based on soil, season & acres.</p>
+          <span class="circle-arrow">→</span>
+        </div>
+        <div class="p-card tint-peach" onclick="FasalApp.enterTool('doctor')">
+          <div class="p-icon">🩺</div>
+          <h3>AI Plant Doctor</h3>
+          <p>Detect leaf diseases early via Gemini Vision AI with exact dosages.</p>
+          <span class="circle-arrow">→</span>
+        </div>
+        <div class="p-card tint-olive" onclick="FasalApp.enterTool('chat')">
+          <div class="p-icon">🤖</div>
+          <h3>Krushi Sahayak AI</h3>
+          <p>Trilingual voice & text assistant in English, Hindi, and Odia.</p>
+          <span class="circle-arrow">→</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ==================== VIEW 2: LOGIN SCREEN (Video Style) ==================== -->
+  <div id="view-login" class="view-screen login-wrapper">
+    <div class="login-card">
+      <h2>Welcome back to<br>FasalSathi 🌱</h2>
+      <p>Login to continue to your smart farming dashboard</p>
+      <input type="email" value="farmer.odisha@fasalsathi.in" placeholder="Email or Mobile" />
+      <input type="password" value="••••••••" placeholder="Password" />
+      <button class="btn-sand full-width btn-lg" onclick="FasalApp.showView('dashboard')">Login</button>
+      <button class="link-light" onclick="FasalApp.showView('landing')">← Back to Home</button>
+    </div>
+  </div>
+
+  <!-- ==================== VIEW 3: MAIN DASHBOARD WORKSPACE ==================== -->
+  <div id="view-dashboard" class="view-screen dashboard-shell">
+    <!-- Left Sidebar -->
+    <aside class="dash-sidebar">
+      <div>
+        <div class="brand-logo" onclick="FasalApp.showView('landing')" style="cursor:pointer;">
+          <span class="leaf-badge">🌱</span>
+          <div>
+            <strong>FasalSathi</strong>
+            <small>Smart Farming, Better Future</small>
+          </div>
+        </div>
+
+        <nav class="dash-nav">
+          <button class="d-nav active" data-tab="overview">⊞ Dashboard</button>
+          <button class="d-nav" data-tab="weather">🌦️ Weather & Cyclone</button>
+          <button class="d-nav" data-tab="guidance">🌱 Crop Guidance</button>
+          <button class="d-nav" data-tab="roi">💰 Crop & ROI Advisor</button>
+          <button class="d-nav" data-tab="doctor">🩺 AI Plant Doctor</button>
+          <button class="d-nav" data-tab="mandi">📈 Live Mandi & MSP</button>
+          <button class="d-nav" data-tab="chat">🤖 Krushi Sahayak</button>
+          <button class="d-nav" data-tab="schemes">🏛️ Govt Schemes</button>
+          <button class="d-nav" data-tab="darpan">🖼️ Krishi Darpan</button>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <label class="lang-label">🌐 LANGUAGE</label>
+        <select id="dashLangSelect" class="sand-select">
+          <option value="en">English</option>
+          <option value="hi">हिंदी (Hindi)</option>
+          <option value="odia">ଓଡ଼ିଆ (Odia)</option>
+        </select>
+        <button class="btn-outline-sm full-width" onclick="FasalApp.showView('landing')">← Landing Home</button>
+      </div>
+    </aside>
+
+    <!-- Main Right Workspace -->
+    <main class="dash-main">
+      <!-- Top Bar -->
+      <header class="dash-topbar">
+        <div class="top-controls">
+          <span>📍 District:</span>
+          <select id="dashDistrictSelect" class="sand-select">
+            <option value="Khordha">Khordha (Bhubaneswar)</option>
+            <option value="Cuttack">Cuttack</option>
+            <option value="Puri">Puri</option>
+            <option value="Sambalpur">Sambalpur</option>
+            <option value="Ganjam">Ganjam</option>
+            <option value="Koraput">Koraput</option>
+          </select>
+          <button id="dashGpsBtn" class="btn-sand">🎯 GPS</button>
+        </div>
+        <div class="farmer-profile">
+          <span class="notif-dot">🔔</span>
+          <div class="avatar-circle">👨‍🌾</div>
+          <div><strong>Kisan Portal</strong><small>Farmer</small></div>
+        </div>
+      </header>
+
+      <!-- TAB 1: DASHBOARD OVERVIEW ("Your farm, at a glance.") -->
+      <section id="tab-overview" class="dash-tab active">
+        <div class="page-header-row">
+          <div>
+            <h1 class="serif-lg">Your farm, at a glance.</h1>
+            <p class="muted">Here's what FasalSathi sees across your farm today.</p>
+          </div>
+          <button class="btn-forest" onclick="FasalApp.switchTab('doctor')">📷 Scan Your Crop →</button>
+        </div>
+
+        <!-- 3-Column Bento Top Row (Video Style) -->
+        <div class="bento-3">
+          <div class="b-card">
+            <div class="b-head"><span>OVERALL FARM HEALTH</span><span class="badge-green">+4.2%</span></div>
+            <div class="big-stat">86%</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:86%"></div></div>
+            <small class="muted">Healthy • Optimal soil moisture</small>
+          </div>
+
+          <div class="b-card">
+            <div class="b-head"><span>TODAY'S WEATHER</span><span id="dashAlertBadge" class="badge-green">Normal</span></div>
+            <h3 id="dashWeatherLoc">Khordha</h3>
+            <div class="big-stat" id="dashTemp">29°C</div>
+            <div class="mini-stats">
+              <span id="dashHum">💧 68%</span>
+              <span id="dashRain">🌧️ 20%</span>
+              <span id="dashWind">💨 14 km/h</span>
+            </div>
+          </div>
+
+          <div class="b-card">
+            <div class="b-head"><span>ACTIVE FARM PROFILE</span><span>🌱</span></div>
+            <h3>Green Valley Farm</h3>
+            <div class="farm-kpis">
+              <div><strong>5</strong><small>Acres</small></div>
+              <div><strong>Paddy</strong><small>Primary</small></div>
+              <div><strong>Kharif</strong><small>Season</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Bento Bottom Row -->
+        <div class="bento-2">
+          <div class="b-card">
+            <div class="b-head"><span>LIVE MANDI VS GOVT MSP</span><button class="text-link" onclick="FasalApp.switchTab('mandi')">View Full Table →</button></div>
+            <div id="ovMandiRows" class="clean-list"></div>
+          </div>
+
+          <div class="b-card warn-tint">
+            <div class="b-head"><span>⚠️ AI ADVISORY & ALERTS</span><button class="text-link" onclick="FasalApp.switchTab('chat')">Ask AI →</button></div>
+            <p id="ovAdvisoryText" class="advisory-quote">
+              Moderate humidity detected. Ideal window for preventive Neem Oil spray (3 ml/L) and balanced NPK top-dressing.
+            </p>
+            <div class="quick-pills">
+              <button class="btn-forest" onclick="FasalApp.switchTab('roi')">Calculate ROI</button>
+              <button class="btn-sand" onclick="FasalApp.switchTab('guidance')">Stage Schedule</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: WEATHER & CYCLONE RADAR -->
+      <section id="tab-weather" class="dash-tab">
+        <h1 class="serif-lg">Agro-Weather & Cyclone Radar</h1>
+        <p class="muted">Hyper-local forecast and extreme weather alerts for your district.</p>
+        <div id="weatherDetailCard" class="b-card mt-16">Loading weather radar...</div>
+      </section>
+
+      <!-- TAB 3: PERSONALIZED CROP GUIDANCE -->
+      <section id="tab-guidance" class="dash-tab">
+        <h1 class="serif-lg">Personalized Growth-Stage Guidance</h1>
+        <p class="muted">Weather-adjusted fertilizer and pest prevention schedule.</p>
+        <div class="b-card mt-16">
+          <div class="control-row">
+            <select id="guideCrop" class="sand-select">
+              <option value="paddy">Paddy (Rice)</option>
+              <option value="wheat">Wheat</option>
+              <option value="maize">Maize</option>
+              <option value="groundnut">Groundnut</option>
+            </select>
+            <select id="guideStage" class="sand-select">
+              <option value="sowing">Sowing Stage</option>
+              <option value="vegetative">Vegetative / Tillering</option>
+              <option value="flowering">Flowering / Panicle</option>
+              <option value="maturity">Maturity / Harvest</option>
+            </select>
+            <button id="getGuidanceBtn" class="btn-forest">Generate Schedule</button>
+          </div>
+          <div id="guidanceResult" class="result-panel">Select crop and growth stage to view tailored advisory.</div>
+        </div>
+      </section>
+
+      <!-- TAB 4: SMART CROP & ROI ADVISOR -->
+      <section id="tab-roi" class="dash-tab">
+        <h1 class="serif-lg">AI Smart Crop Decision & ROI Advisor</h1>
+        <p class="muted">Compare yield, cultivation cost, net profit & Shree Anna millet incentives.</p>
+        <div class="b-card mt-16">
+          <div class="control-row">
+            <select id="roiSeason" class="sand-select">
+              <option value="kharif">Kharif Season</option>
+              <option value="rabi">Rabi Season</option>
+              <option value="summer">Summer (Zaid)</option>
+            </select>
+            <select id="roiSoil" class="sand-select">
+              <option value="alluvial">Alluvial Soil</option>
+              <option value="red">Red & Laterite Soil</option>
+              <option value="black">Black Soil</option>
+            </select>
+            <select id="roiIrrigation" class="sand-select">
+              <option value="canal">Canal / Irrigated</option>
+              <option value="rainfed">Rainfed</option>
+              <option value="drip">Drip / Borewell</option>
+            </select>
+            <input type="number" id="roiAcres" class="sand-input" value="2" min="0.5" step="0.5" placeholder="Acres" />
+            <button id="calcRoiBtn" class="btn-forest">Analyze Profit & ROI</button>
+          </div>
+          <div id="roiResult" class="bento-3 mt-16"></div>
+        </div>
+      </section>
+
+      <!-- TAB 5: MULTIMODAL AI PLANT DOCTOR (Video Scan UI Style) -->
+      <section id="tab-doctor" class="dash-tab">
+        <h1 class="serif-lg">Scan your crop.</h1>
+        <p class="muted">Upload a clear image of your crop or leaf for Gemini Vision pathology diagnosis.</p>
+
+        <div class="scan-layout mt-16">
+          <div class="camera-box">
+            <div class="camera-inner">
+              <img id="leafPreview" class="preview-leaf hidden" alt="Leaf Preview" />
+              <div id="cameraPlaceholder">
+                <div class="cam-icon">📷</div>
+                <h4>Place the crop inside the frame</h4>
+                <p>Select a leaf image from your device to identify disease & dosage</p>
+              </div>
+            </div>
+            <div class="scan-actions">
+              <input type="file" id="leafInput" accept="image/*" class="sand-input" />
+              <button id="diagnoseBtn" class="btn-forest">Analyze Crop →</button>
+            </div>
+          </div>
+
+          <div class="b-card">
+            <span class="section-kicker">AI PATHOLOGY REPORT</span>
+            <div id="doctorResult" class="mt-16">
+              <p class="muted">Upload a leaf photo to view Disease Name, Confidence Score, Organic Remedy, and Chemical Dosage.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: LIVE MANDI RATES -->
+      <section id="tab-mandi" class="dash-tab">
+        <div class="page-header-row">
+          <div>
+            <h1 class="serif-lg">Live APMC Mandi Rates vs Govt MSP</h1>
+            <p class="muted">Real-time commodity modal prices compared with official MSP.</p>
+          </div>
+          <button id="refreshMandiBtn" class="btn-forest">🔄 Refresh Rates</button>
+        </div>
+        <div class="b-card mt-16">
+          <table class="styled-table">
+            <thead>
+              <tr><th>Commodity</th><th>Mandi</th><th>Modal Price (₹/q)</th><th>Govt MSP (₹/q)</th><th>MSP Margin</th></tr>
+            </thead>
+            <tbody id="mandiTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 7: TRILINGUAL KRUSHI SAHAYAK -->
+      <section id="tab-chat" class="dash-tab">
+        <div class="page-header-row">
+          <div>
+            <h1 class="serif-lg">Krushi Sahayak AI</h1>
+            <p class="muted">Ask farming questions in English, Hindi, or Odia via voice or text.</p>
+          </div>
+          <button id="speakLastBtn" class="btn-sand">🔊 Listen Last Reply</button>
+        </div>
+
+        <div class="b-card mt-16">
+          <div id="chatMessages" class="chat-feed">
+            <div class="bubble bot">Namaste! Main aapka Krushi Sahayak hoon. Fasal, mausam, keet-rog, ya mandi bhav ke baare mein poochein.</div>
+          </div>
+          <div class="chip-strip">
+            <button class="pill-chip" onclick="FasalApp.sendQuickChat('Best fertilizer schedule for paddy?')">🌾 Paddy Fertilizer</button>
+            <button class="pill-chip" onclick="FasalApp.sendQuickChat('Organic control for leaf blast?')">🍃 Leaf Blast Remedy</button>
+            <button class="pill-chip" onclick="FasalApp.sendQuickChat('PM-KISAN and KALIA eligibility')">🏛️ Govt Schemes</button>
+          </div>
+          <div class="chat-bar">
+            <button id="micBtn" class="btn-sand" title="Speak">🎙️</button>
+            <input type="text" id="chatInput" class="sand-input flex-1" placeholder="Type or speak your question..." />
+            <button id="sendChatBtn" class="btn-forest">Send →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 8: GOVT SCHEMES & KRISHI DARPAN -->
+      <section id="tab-schemes" class="dash-tab">
+        <h1 class="serif-lg">Farmer Welfare Schemes Portal</h1>
+        <p class="muted">Direct DBT benefits, crop insurance, and official portals.</p>
+        <div id="schemesList" class="bento-3 mt-16"></div>
+      </section>
+
+      <section id="tab-darpan" class="dash-tab">
+        <h1 class="serif-lg">Krishi Darpan — GI Heritage & Innovation</h1>
+        <p class="muted">Explore regional GI-tagged crops with audio narration.</p>
+        <div id="darpanList" class="bento-3 mt-16"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
